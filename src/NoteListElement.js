@@ -71,8 +71,8 @@ const styles = {
     backgroundColor: "#008bf8"
   },
   liHoverText: {
-    color: "#fff!important",
-    textDecoration: "none !important"
+    color: "#fff",
+    textDecoration: "none"
   },
   liHoverNote: {
     borderColor: "transparent"
@@ -92,10 +92,10 @@ const styles = {
     marginTop: ".5rem"
   },
   noteBodyChildren: {
-    fontSize: "1em!important",
-    margin: "0!important",
-    padding: "0!important",
-    color: "#999!important",
+    fontSize: "1em",
+    margin: "0",
+    padding: "0",
+    color: "#999",
     background: "none",
     border: "none"
   }

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 
-class Main extends Component {
-  render() {
-    return (
+const Main = () => {
+  return (
       <div className="Main">
         Main!
       </div>
     );
   }
-}
 
 export default Main;

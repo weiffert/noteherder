@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: false
+      hover: true 
     };
     this.styles = {
       sidebar: {
@@ -59,7 +59,6 @@ class Sidebar extends React.Component {
   }
 
   toggleButton(value) {
-    console.log("hide");
     this.setState({
       hover: value
     });

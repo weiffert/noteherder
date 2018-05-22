@@ -2,11 +2,40 @@ import React from "react";
 
 const NoteListElement = props => {
   return (
-    <a style={styles.a} onMouseEnter={props.onMouseEnter} onMouseLeave={props.onMouseLeave}>
-      <li style={styles.li}>
-        <div className="note" style={styles.note}>
-          <div className="note-title" style={styles.noteTitle}>{props.name}</div>
-          <div className="note-body" style={styles.noteBody}>
+    <a
+      style={styles.a}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+    >
+      <li
+        style={props.active ? { ...styles.li, ...styles.liHover } : styles.li}
+      >
+        <div
+          className="note"
+          style={
+            props.active
+              ? { ...styles.note, ...styles.liHoverNote }
+              : styles.note
+          }
+        >
+          <div
+            className="note-title"
+            style={
+              props.active
+                ? { ...styles.noteTitle, ...styles.liHoverText }
+                : styles.noteTitle
+            }
+          >
+            {props.name}
+          </div>
+          <div
+            className="note-body"
+            style={
+              props.active
+                ? { ...styles.noteBody, ...styles.liHoverText }
+                : styles.noteBody
+            }
+          >
             <p style={styles.noteBodyChildren}>{props.body}</p>
           </div>
         </div>
@@ -69,7 +98,7 @@ const styles = {
     color: "#999!important",
     background: "none",
     border: "none"
-  },
+  }
 };
 
 export default NoteListElement;

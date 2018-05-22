@@ -1,6 +1,6 @@
 import React from "react";
 
-const NoteForm = () => {
+const NoteForm = (props) => {
   return (
     <div className="NoteForm" style={styles.NoteForm}>
       <div className="form-actions" style={styles.formActions}>
@@ -14,10 +14,11 @@ const NoteForm = () => {
             type="text"
             name="title"
             placeholder="Title your note"
+            value={props.name ? props.name : ""}
             style={styles.input}
           />
         </p>
-        <textarea name="body" style={styles.textarea} />
+        <textarea name="body" style={styles.textarea} value={props.body ? props.body : ""}/>
       </form>
     </div>
   );
@@ -25,7 +26,6 @@ const NoteForm = () => {
 
 const styles = {
   NoteForm: {
-    // -ms-flex-positive: '1',
     flexGrow: "1",
     padding: "0 3rem"
   },
@@ -33,7 +33,6 @@ const styles = {
     paddingTop: "1rem",
     marginLeft: "-2rem",
     display: "flex",
-    // -ms-flex-line-pack: 'center',
     alignContent: "center"
   },
   button: {

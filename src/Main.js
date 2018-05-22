@@ -8,6 +8,12 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      active: {
+        key: 0,
+        active: true,
+        name: "",
+        body: "",
+      },
       notes: [
         {
           key: 1,
@@ -53,8 +59,13 @@ class Main extends React.Component {
   }
 
   handleClick(key) {
-    console.log(key);
+    const notes = [...this.state.notes];
+    const index = notes.findIndex(note => note.key === key);
+    this.setState({
+      active: notes[index],
+    })
   }
+  
   render() {
     return (
       <div className="Main" style={style}>
@@ -65,7 +76,7 @@ class Main extends React.Component {
           onMouseLeave={key => this.handleMouseLeave(key)}
           notes={this.state.notes}
         />
-        <NoteForm />
+        <NoteForm name={this.state.active.name} body={this.state.active.body}/>
       </div>
     );
   }

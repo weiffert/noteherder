@@ -4,6 +4,7 @@ const NoteListElement = props => {
   return (
     <a
       style={styles.a}
+      onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
     >
@@ -36,7 +37,7 @@ const NoteListElement = props => {
                 : styles.noteBody
             }
           >
-            <p style={styles.noteBodyChildren}>{props.body}</p>
+            <p>{props.body}</p>
           </div>
         </div>
       </li>

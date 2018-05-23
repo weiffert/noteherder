@@ -111,7 +111,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar makeNewNote={() => this.clearNoteForm()}/>
+        <Sidebar makeNewNote={this.clearNoteForm}/>
         <NoteList
           onClick={this.handleClick}
           onMouseEnter={this.handleMouseEnter}

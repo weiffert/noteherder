@@ -1,21 +1,6 @@
 import React from "react";
 
 class NoteForm extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = this.props;
-  }
-
-  updateState(event) {
-    const obj = {};
-    obj[event.target.name] = event.target.value;
-    this.setState(obj);
-  }
-
-  componentWillReceiveProps(props) {
-    if(props)
-      this.setState(props);
-  }
 
   render() {
     return (
@@ -25,20 +10,20 @@ class NoteForm extends React.Component {
             <i className="fa fa-trash-o" style={styles.i} />
           </button>
         </div>
-        <form style={styles.form} onChange={(event) => this.updateState(event)}>
+        <form style={styles.form} onChange={(event) => this.props.updateState(event)}>
           <p>
             <input
               type="text"
               name="name"
               placeholder="Title your note"
-              value={this.state.name}
+              value={this.props.name}
               style={styles.input}
             />
           </p>
           <textarea
             name="body"
             style={styles.textarea}
-            value={this.state.body}
+            value={this.props.body}
           />
         </form>
       </div>

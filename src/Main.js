@@ -8,16 +8,11 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: {
-        key: 0,
-        active: true,
-        name: "",
-        body: "",
-      },
       notes: [
         {
           key: 1,
           active: false,
+          hover: false,
           name: "Kohlrabi welsh",
           body:
             "Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic."
@@ -25,6 +20,7 @@ class Main extends React.Component {
         {
           key: 2,
           active: false,
+          hover: false,
           name: "Dandelion cucumber",
           body:
             "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
@@ -32,6 +28,7 @@ class Main extends React.Component {
         {
           key: 3,
           active: false,
+          hover: false,
           name: "Prairie turnip",
           body:
             "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip."
@@ -43,7 +40,7 @@ class Main extends React.Component {
   handleMouseEnter(key) {
     const notes = [...this.state.notes];
     const index = notes.findIndex(note => note.key === key);
-    notes[index].active = true;
+    notes[index].hover = true;
     this.setState({
       notes
     });
@@ -52,18 +49,46 @@ class Main extends React.Component {
   handleMouseLeave(key) {
     const notes = [...this.state.notes];
     const index = notes.findIndex(note => note.key === key);
-    notes[index].active = false;
+    notes[index].hover = false;
     this.setState({
       notes
     });
   }
 
   handleClick(key) {
-    const notes = [...this.state.notes];
+    let notes = [...this.state.notes];
     const index = notes.findIndex(note => note.key === key);
+    notes.forEach(note => note.active = false);
+    notes[index].active = true;
     this.setState({
-      active: notes[index],
-    })
+      notes
+    });
+  }
+
+  updateForm(event) {
+    const notes = [...this.state.notes];
+    const index = notes.findIndex(note => note.active === true);
+    notes[index][event.target.name] = event.target.value;
+
+    this.setState({
+      notes
+    });
+  }
+
+  findActiveNote() {
+    const notes = [...this.state.notes];
+    const index = notes.findIndex(note => note.active === true);
+
+    if(index >= 0) 
+      return notes[index];
+    else
+      return {
+        key: 0,
+        body: "",
+        name: "",
+        active: true,
+        hover: false,
+      }
   }
   
   render() {
@@ -76,7 +101,7 @@ class Main extends React.Component {
           onMouseLeave={key => this.handleMouseLeave(key)}
           notes={this.state.notes}
         />
-        <NoteForm name={this.state.active.name} body={this.state.active.body}/>
+        <NoteForm name={this.findActiveNote().name} body={this.findActiveNote().body} updateState={this.updateForm.bind(this)}/>
       </div>
     );
   }

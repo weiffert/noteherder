@@ -7,7 +7,7 @@ class NoteList extends React.Component {
     return this.props.notes.map((note, index) => {
       return (
         <NoteListElement
-          active={note.active}
+          hover={note.hover}
           name={note.name}
           body={note.body}
           key={note.key}

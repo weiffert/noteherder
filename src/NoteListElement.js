@@ -9,12 +9,12 @@ const NoteListElement = props => {
       onMouseLeave={props.onMouseLeave}
     >
       <li
-        style={props.active ? { ...styles.li, ...styles.liHover } : styles.li}
+        style={props.hover ? { ...styles.li, ...styles.liHover } : styles.li}
       >
         <div
           className="note"
           style={
-            props.active
+            props.hover
               ? { ...styles.note, ...styles.liHoverNote }
               : styles.note
           }
@@ -22,7 +22,7 @@ const NoteListElement = props => {
           <div
             className="note-title"
             style={
-              props.active
+              props.hover
                 ? { ...styles.noteTitle, ...styles.liHoverText }
                 : styles.noteTitle
             }
@@ -32,7 +32,7 @@ const NoteListElement = props => {
           <div
             className="note-body"
             style={
-              props.active
+              props.hover
                 ? { ...styles.noteBody, ...styles.liHoverText }
                 : styles.noteBody
             }

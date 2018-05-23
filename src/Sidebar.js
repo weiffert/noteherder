@@ -13,7 +13,7 @@ const Sidebar = props => {
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <a>
+      <a onClick={props.makeNewNote}>
         <img
           src={newHover}
           alt="New note"

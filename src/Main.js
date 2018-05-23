@@ -65,6 +65,14 @@ class Main extends React.Component {
     });
   }
 
+  makeNewNote() {
+    let notes = [...this.state.notes];
+    notes.forEach(note => (note.active = false));
+    this.setState({
+      notes
+    });
+  }
+
   updateForm(event) {
     const notes = [...this.state.notes];
     let index = notes.findIndex(note => note.active === true);
@@ -103,7 +111,7 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar />
+        <Sidebar makeNewNote={() => this.makeNewNote()}/>
         <NoteList
           onClick={key => this.handleClick(key)}
           onMouseEnter={key => this.handleMouseEnter(key)}

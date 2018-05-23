@@ -24,7 +24,7 @@ const Sidebar = props => {
 
       <div className={css(styles.SignOut)}>
         <button className={css(styles.button, styles.SignOutButton)}>
-          <i className={`fa fa-sign-out ${css(styles.i)}`} />
+          <i className={`fas fa-sign-out-alt ${css(styles.i)}`} title="Sign out" />
         </button>
       </div>
     </div>

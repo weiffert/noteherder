@@ -1,28 +1,50 @@
 import React from "react";
 
-const NoteForm = (props) => {
-  return (
-    <div className="NoteForm" style={styles.NoteForm}>
-      <div className="form-actions" style={styles.formActions}>
-        <button type="button" style={styles.button}>
-          <i className="fa fa-trash-o" style={styles.i} />
-        </button>
-      </div>
-      <form style={styles.form}>
-        <p>
-          <input
-            type="text"
-            name="title"
-            placeholder="Title your note"
-            value={props.name ? props.name : ""}
-            style={styles.input}
+class NoteForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = this.props;
+  }
+
+  updateState(event) {
+    const obj = {};
+    obj[event.target.name] = event.target.value;
+    this.setState(obj);
+  }
+
+  componentWillReceiveProps(props) {
+    if(props)
+      this.setState(props);
+  }
+
+  render() {
+    return (
+      <div className="NoteForm" style={styles.NoteForm}>
+        <div className="form-actions" style={styles.formActions}>
+          <button type="button" style={styles.button}>
+            <i className="fa fa-trash-o" style={styles.i} />
+          </button>
+        </div>
+        <form style={styles.form} onChange={(event) => this.updateState(event)}>
+          <p>
+            <input
+              type="text"
+              name="name"
+              placeholder="Title your note"
+              value={this.state.name}
+              style={styles.input}
+            />
+          </p>
+          <textarea
+            name="body"
+            style={styles.textarea}
+            value={this.state.body}
           />
-        </p>
-        <textarea name="body" style={styles.textarea} value={props.body ? props.body : ""}/>
-      </form>
-    </div>
-  );
-};
+        </form>
+      </div>
+    );
+  }
+}
 
 const styles = {
   NoteForm: {

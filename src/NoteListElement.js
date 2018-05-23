@@ -1,20 +1,20 @@
 import React from "react";
 
-const NoteListElement = props => {
+const NoteListElement = ({note, hover, onClick, onMouseEnter, onMouseLeave})=> {
   return (
     <a
       style={styles.a}
-      onClick={() => props.onClick(props.note)}
-      onMouseEnter={() => props.onMouseEnter(props.note)}
-      onMouseLeave={() => props.onMouseLeave(props.note)}
+      onClick={() => onClick(note)}
+      onMouseEnter={() => onMouseEnter(note)}
+      onMouseLeave={() => onMouseLeave(note)}
     >
       <li
-        style={props.hover ? { ...styles.li, ...styles.liHover } : styles.li}
+        style={hover ? { ...styles.li, ...styles.liHover } : styles.li}
       >
         <div
           className="note"
           style={
-            props.hover
+            hover
               ? { ...styles.note, ...styles.liHoverNote }
               : styles.note
           }
@@ -22,22 +22,22 @@ const NoteListElement = props => {
           <div
             className="note-title"
             style={
-              props.hover
+              hover
                 ? { ...styles.noteTitle, ...styles.liHoverText }
                 : styles.noteTitle
             }
           >
-            {props.note.name}
+            {note.name}
           </div>
           <div
             className="note-body"
             style={
-              props.hover
+              hover
                 ? { ...styles.noteBody, ...styles.liHoverText }
                 : styles.noteBody
             }
           >
-            <p>{props.note.body}</p>
+            <p>{note.body}</p>
           </div>
         </div>
       </li>

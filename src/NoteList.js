@@ -2,19 +2,19 @@ import React from "react";
 
 import NoteListElement from "./NoteListElement";
 
-const NoteList = props => {
+const NoteList = ({ notes, onClick, onMouseEnter, onMouseLeave} )=> {
   return (
     <div className="NoteList" style={styles.NoteList}>
       <h3 style={styles.h3}>Notes</h3>
       <ul id="notes" style={styles.notes}>
-        {props.notes.map(note => (
+        {notes.map(note => (
           <NoteListElement
             hover={note.hover}
             key={note.key}
             note={note}
-            onClick={props.onClick}
-            onMouseEnter={props.onMouseEnter}
-            onMouseLeave={props.onMouseLeave}
+            onClick={onClick}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
           />
         ))}
       </ul>

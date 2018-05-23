@@ -27,7 +27,7 @@ const NoteListElement = props => {
                 : styles.noteTitle
             }
           >
-            {props.name}
+            {props.note.name}
           </div>
           <div
             className="note-body"
@@ -37,7 +37,7 @@ const NoteListElement = props => {
                 : styles.noteBody
             }
           >
-            <p>{props.body}</p>
+            <p>{props.note.body}</p>
           </div>
         </div>
       </li>

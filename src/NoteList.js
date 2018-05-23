@@ -7,15 +7,14 @@ const NoteList = props => {
     <div className="NoteList" style={styles.NoteList}>
       <h3 style={styles.h3}>Notes</h3>
       <ul id="notes" style={styles.notes}>
-        {this.props.notes.map(note => (
+        {props.notes.map(note => (
           <NoteListElement
             hover={note.hover}
-            name={note.name}
-            body={note.body}
+            note={note}
             key={note.key}
-            onClick={() => this.props.onClick(note.key)}
-            onMouseEnter={() => this.props.onMouseEnter(note.key)}
-            onMouseLeave={() => this.props.onMouseLeave(note.key)}
+            onClick={() => props.onClick(note.key)}
+            onMouseEnter={() => props.onMouseEnter(note.key)}
+            onMouseLeave={() => props.onMouseLeave(note.key)}
           />
         ))}
       </ul>

@@ -1,15 +1,15 @@
 import React from "react";
 
-const NoteForm = ({note, onChange}) => {
+const NoteForm = ({note, onChange, onClick}) => {
   const updateNote = (event) => {
     note[event.target.name] = event.target.value;
     onChange(note, event);
   }
-  
+
   return (
     <div className="NoteForm" style={styles.NoteForm}>
       <div className="form-actions" style={styles.formActions}>
-        <button type="button" style={styles.button}>
+        <button type="button" style={styles.button} onClick={event => onClick(note, event)}>
           <i className="fas fa-trash-alt" style={styles.i} />
         </button>
       </div>

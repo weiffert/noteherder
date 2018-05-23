@@ -35,35 +35,35 @@ class Main extends React.Component {
     };
   }
 
-  handleMouseEnter = (note) => {
+  handleMouseEnter = note => {
     const notes = [...this.state.notes];
     const index = notes.findIndex(n => n.key === note.key);
     notes[index].hover = true;
     this.setState({
       notes
     });
-  }
+  };
 
-  handleMouseLeave = (note) => {
+  handleMouseLeave = note => {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(n=> n.key === note.key);
+    const index = notes.findIndex(n => n.key === note.key);
     notes[index].hover = false;
     this.setState({
       notes
     });
-  }
+  };
 
-  handleClick = (note) => {
+  handleClick = note => {
     this.setState({
       activeNote: note
     });
-  }
+  };
 
   clearNoteForm = () => {
     this.setState({
-      activeNote: this.blankNote() 
+      activeNote: this.blankNote()
     });
-  }
+  };
 
   updateForm = (note, event) => {
     const notes = [...this.state.notes];
@@ -79,22 +79,37 @@ class Main extends React.Component {
       notes,
       activeNote: note
     });
-  }
+  };
+
+  deleteNote = (note, event) => {
+    const notes = [...this.state.notes];
+    let index = notes.findIndex(n => n.key === note.key);
+    if (index >= 0) {
+      notes.splice(index, 1);
+
+      this.setState({
+        notes
+      });
+    }
+    this.setState({
+      activeNote: this.blankNote()
+    });
+  };
 
   blankNote = () => {
     return {
-        key: 0,
-        body: "",
-        name: "",
-        active: false,
-        hover: false
-    }
-  }
+      key: 0,
+      body: "",
+      name: "",
+      active: false,
+      hover: false
+    };
+  };
 
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar makeNewNote={this.clearNoteForm}/>
+        <Sidebar makeNewNote={this.clearNoteForm} />
         <NoteList
           onClick={this.handleClick}
           onMouseEnter={this.handleMouseEnter}
@@ -103,7 +118,8 @@ class Main extends React.Component {
         />
         <NoteForm
           note={this.state.activeNote}
-          onChange={this.updateForm.bind(this)}
+          onChange={this.updateForm}
+          onClick={this.deleteNote}
         />
       </div>
     );

@@ -4,9 +4,9 @@ const NoteListElement = props => {
   return (
     <a
       style={styles.a}
-      onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
+      onClick={() => props.onClick(props.note)}
+      onMouseEnter={() => props.onMouseEnter(props.note)}
+      onMouseLeave={() => props.onMouseLeave(props.note)}
     >
       <li
         style={props.hover ? { ...styles.li, ...styles.liHover } : styles.li}

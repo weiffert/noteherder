@@ -37,27 +37,27 @@ class Main extends React.Component {
     };
   }
 
-  handleMouseEnter(key) {
+  handleMouseEnter = (note) => {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(note => note.key === key);
+    const index = notes.findIndex(n => n.key === note.key);
     notes[index].hover = true;
     this.setState({
       notes
     });
   }
 
-  handleMouseLeave(key) {
+  handleMouseLeave = (note) => {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(note => note.key === key);
+    const index = notes.findIndex(n=> n.key === note.key);
     notes[index].hover = false;
     this.setState({
       notes
     });
   }
 
-  handleClick(key) {
+  handleClick = (note) => {
     let notes = [...this.state.notes];
-    const index = notes.findIndex(note => note.key === key);
+    const index = notes.findIndex(n => n.key === note.key);
     notes.forEach(note => (note.active = false));
     notes[index].active = true;
     this.setState({
@@ -65,7 +65,7 @@ class Main extends React.Component {
     });
   }
 
-  makeNewNote() {
+  clearNoteForm = () => {
     let notes = [...this.state.notes];
     notes.forEach(note => (note.active = false));
     this.setState({
@@ -73,7 +73,7 @@ class Main extends React.Component {
     });
   }
 
-  updateForm(event) {
+  updateForm = (event) => {
     const notes = [...this.state.notes];
     let index = notes.findIndex(note => note.active === true);
     if (index < 0) {
@@ -111,11 +111,11 @@ class Main extends React.Component {
   render() {
     return (
       <div className="Main" style={style}>
-        <Sidebar makeNewNote={() => this.makeNewNote()}/>
+        <Sidebar makeNewNote={() => this.clearNoteForm()}/>
         <NoteList
-          onClick={key => this.handleClick(key)}
-          onMouseEnter={key => this.handleMouseEnter(key)}
-          onMouseLeave={key => this.handleMouseLeave(key)}
+          onClick={this.handleClick}
+          onMouseEnter={this.handleMouseEnter}
+          onMouseLeave={this.handleMouseLeave}
           notes={this.state.notes}
         />
         <NoteForm

@@ -10,11 +10,11 @@ const NoteList = props => {
         {props.notes.map(note => (
           <NoteListElement
             hover={note.hover}
-            note={note}
             key={note.key}
-            onClick={() => props.onClick(note.key)}
-            onMouseEnter={() => props.onMouseEnter(note.key)}
-            onMouseLeave={() => props.onMouseLeave(note.key)}
+            note={note}
+            onClick={props.onClick}
+            onMouseEnter={props.onMouseEnter}
+            onMouseLeave={props.onMouseLeave}
           />
         ))}
       </ul>

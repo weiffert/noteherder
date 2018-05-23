@@ -13,19 +13,16 @@ const Sidebar = props => {
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <a
-        onMouseLeave={() => this.toggleButton(true)}
-        onMouseEnter={() => this.toggleButton(false)}
-      >
-        <img src={newIcon} alt="New note" className={css(styles.aImage)} />
+      <a>
         <img
           src={newHover}
           alt="New note"
-          className={css(styles.aImage, styles.newHover)}
+          className={css(styles.aImage)}
         />
+        <img src={newIcon} alt="New note" className={css(styles.aImage)} />
       </a>
 
-      <div className="SignOut" className={css(styles.SignOut)}>
+      <div className={css(styles.SignOut)}>
         <button className={css(styles.button, styles.SignOutButton)}>
           <i className={`fa fa-sign-out ${css(styles.i)}`} />
         </button>
@@ -33,7 +30,7 @@ const Sidebar = props => {
     </div>
   );
 };
-const styles = {
+const styles = StyleSheet.create({
   sidebar: {
     width: "6rem",
     backgroundColor: "#f3f3f3",
@@ -66,7 +63,10 @@ const styles = {
     position: "absolute",
     left: "1rem",
     width: "4rem",
-    transition: "opacity 0.25s ease-in-out"
+    transition: "opacity 0.25s ease-in-out",
+    ":hover": {
+      opacity: 0
+    }
   },
   SignOut: {
     position: "absolute",
@@ -78,6 +78,6 @@ const styles = {
   i: {
     fontSize: "2rem"
   }
-};
+});
 
 export default Sidebar;

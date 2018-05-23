@@ -11,6 +11,7 @@ const NoteForm = props => {
       <form
         style={styles.form}
         onChange={event => props.updateState(event)}
+        onSubmit={event => event.preventDefault()}
       >
         <p>
           <input

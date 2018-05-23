@@ -8,7 +8,7 @@ class Sidebar extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: true 
+      hover: true
     };
     this.styles = {
       sidebar: {
@@ -65,34 +65,23 @@ class Sidebar extends React.Component {
   }
 
   render() {
-    let button;
-    if (this.state.hover) {
-      button = (
-        <img
-          src={newIcon}
-          alt="New note"
-          style={this.styles.aImage}
-          onMouseEnter={() => this.toggleButton(false)}
-        />
-      );
-    } else {
-      button = (
-        <img
-          src={newHover}
-          alt="New note"
-          style={this.styles.aImage}
-          onMouseLeave={() => this.toggleButton(true)}
-        />
-      );
-    }
-
     return (
       <div className="Sidebar" style={this.styles.sidebar}>
         <div className="logo" style={this.styles.logo}>
           <img src={quill} alt="Noteherder" style={this.styles.logoImg} />
         </div>
 
-        <a>{button}</a>
+        <a
+          onMouseLeave={() => this.toggleButton(true)}
+          onMouseEnter={() => this.toggleButton(false)}
+        >
+          <img src={newIcon} alt="New note" style={this.styles.aImage} />
+          <img
+            src={newHover}
+            alt="New note"
+            style={{ opacity: this.state.hover ? 0 : 1, ...this.styles.aImage }}
+          />
+        </a>
 
         <div className="SignOut" style={this.styles.SignOut}>
           <button

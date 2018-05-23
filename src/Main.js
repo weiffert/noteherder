@@ -9,30 +9,36 @@ class Main extends React.Component {
     super(props);
     this.state = {
       activeNote: this.blankNote(),
-      notes: [
-        {
-          key: 1,
-          hover: false,
-          name: "Kohlrabi welsh",
-          body:
-            "Veggies es bonus vobis, proinde vos postulo essum magis kohlrabi welsh onion daikon amaranth tatsoi tomatillo melon azuki bean garlic."
-        },
-        {
-          key: 2,
-          hover: false,
-          name: "Dandelion cucumber",
-          body:
-            "Gumbo beet greens corn soko endive gumbo gourd. Parsley shallot courgette tatsoi pea sprouts fava bean collard greens dandelion okra wakame tomato. Dandelion cucumber earthnut pea peanut soko zucchini."
-        },
-        {
-          key: 3,
-          hover: false,
-          name: "Prairie turnip",
-          body:
-            "Nori grape silver beet broccoli kombu beet greens fava bean potato quandong celery. Bunya nuts black-eyed pea prairie turnip leek lentil turnip greens parsnip."
-        }
-      ]
+      notes: []
     };
+
+    window.addEventListener("beforeunload", this.saveToLocalStorage);
+  }
+
+  saveToLocalStorage = () => {
+    window.localStorage.setItem("state", JSON.stringify(this.state));
+  };
+
+  loadFromLocalStorage = () => {
+    const data = window.localStorage.getItem("state");
+    console.log(data);
+    try {
+      this.setState(JSON.parse(data));
+    } catch (error) {
+      this.setState({
+        activeNote: this.blankNote(),
+        notes: []
+      });
+    }
+  };
+
+  componentDidMount() {
+    this.loadFromLocalStorage();
+  }
+
+  componentWillUnmount() {
+    this.saveToLocalStorage();
+    debugger;
   }
 
   handleMouseEnter = note => {

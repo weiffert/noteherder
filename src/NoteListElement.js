@@ -1,6 +1,12 @@
 import React from "react";
 
-const NoteListElement = ({note, hover, onClick, onMouseEnter, onMouseLeave})=> {
+const NoteListElement = ({
+  note,
+  hover,
+  onClick,
+  onMouseEnter,
+  onMouseLeave
+}) => {
   return (
     <a
       style={styles.a}
@@ -8,15 +14,11 @@ const NoteListElement = ({note, hover, onClick, onMouseEnter, onMouseLeave})=> {
       onMouseEnter={() => onMouseEnter(note)}
       onMouseLeave={() => onMouseLeave(note)}
     >
-      <li
-        style={hover ? { ...styles.li, ...styles.liHover } : styles.li}
-      >
+      <li style={hover ? { ...styles.li, ...styles.liHover } : styles.li}>
         <div
           className="note"
           style={
-            hover
-              ? { ...styles.note, ...styles.liHoverNote }
-              : styles.note
+            hover ? { ...styles.note, ...styles.liHoverNote } : styles.note
           }
         >
           <div

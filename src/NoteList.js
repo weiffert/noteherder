@@ -2,7 +2,7 @@ import React from "react";
 
 import NoteListElement from "./NoteListElement";
 
-const NoteList = ({ notes, onClick, onMouseEnter, onMouseLeave} )=> {
+const NoteList = ({ notes, onClick, onMouseEnter, onMouseLeave }) => {
   return (
     <div className="NoteList" style={styles.NoteList}>
       <h3 style={styles.h3}>Notes</h3>

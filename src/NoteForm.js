@@ -1,6 +1,11 @@
 import React from "react";
 
-const NoteForm = props => {
+const NoteForm = ({note, onChange}) => {
+  const updateNote = (event) => {
+    note[event.target.name] = event.target.value;
+    onChange(note, event);
+  }
+  
   return (
     <div className="NoteForm" style={styles.NoteForm}>
       <div className="form-actions" style={styles.formActions}>
@@ -10,7 +15,7 @@ const NoteForm = props => {
       </div>
       <form
         style={styles.form}
-        onChange={event => props.updateState(event)}
+        onChange={event => updateNote(event)}
         onSubmit={event => event.preventDefault()}
       >
         <p>
@@ -18,11 +23,11 @@ const NoteForm = props => {
             type="text"
             name="name"
             placeholder="Title your note"
-            value={props.name}
+            value={note.name}
             style={styles.input}
           />
         </p>
-        <textarea name="body" style={styles.textarea} value={props.body} />
+        <textarea name="body" style={styles.textarea} value={note.body} />
       </form>
     </div>
   );

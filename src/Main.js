@@ -77,13 +77,11 @@ class Main extends React.Component {
     const notes = [...this.state.notes];
     let index = notes.findIndex(note => note.active === true);
     if (index < 0) {
-      notes.push({
-        active: true,
-        hover: false,
-        name: "",
-        body: "",
-        key: notes.length + 1
-      });
+      const blankNote = this.blankNote();
+      blankNote.active = true;
+      blankNote.key = notes.length + 1;
+      notes.push(blankNote);
+      
       index = notes.findIndex(note => note.active === true);
     }
     notes[index][event.target.name] = event.target.value;
@@ -93,19 +91,24 @@ class Main extends React.Component {
     });
   }
 
+  blankNote = () => {
+    return {
+        key: 0,
+        body: "",
+        name: "",
+        active: false,
+        hover: false
+    }
+  }
+
   findActiveNote() {
     const notes = [...this.state.notes];
     const index = notes.findIndex(note => note.active === true);
 
     if (index >= 0) return notes[index];
-    else
-      return {
-        key: 0,
-        body: "",
-        name: "",
-        active: true,
-        hover: false
-      };
+    const blankNote = this.blankNote();
+    blankNote.active = true;
+    return blankNote;
   }
 
   render() {

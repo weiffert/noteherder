@@ -6,14 +6,14 @@ import quill from "./quill.svg";
 import newIcon from "./new.png";
 import newHover from "./new-hover.png";
 
-const Sidebar = props => {
+const Sidebar = ({makeNewNote })=> {
   return (
     <div className={css(styles.sidebar)}>
       <div className={css(styles.logo)}>
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <a onClick={props.makeNewNote}>
+      <a onClick={makeNewNote}>
         <img
           src={newHover}
           alt="New note"

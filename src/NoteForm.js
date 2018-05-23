@@ -5,7 +5,7 @@ const NoteForm = props => {
     <div className="NoteForm" style={styles.NoteForm}>
       <div className="form-actions" style={styles.formActions}>
         <button type="button" style={styles.button}>
-          <i className="fa fa-trash-o" style={styles.i} />
+          <i className="fas fa-trash-alt" style={styles.i} />
         </button>
       </div>
       <form

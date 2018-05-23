@@ -58,7 +58,7 @@ class Main extends React.Component {
   handleClick(key) {
     let notes = [...this.state.notes];
     const index = notes.findIndex(note => note.key === key);
-    notes.forEach(note => note.active = false);
+    notes.forEach(note => (note.active = false));
     notes[index].active = true;
     this.setState({
       notes
@@ -67,7 +67,17 @@ class Main extends React.Component {
 
   updateForm(event) {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(note => note.active === true);
+    let index = notes.findIndex(note => note.active === true);
+    if (index < 0) {
+      notes.push({
+        active: true,
+        hover: false,
+        name: "",
+        body: "",
+        key: notes.length + 1
+      });
+      index = notes.findIndex(note => note.active === true);
+    }
     notes[index][event.target.name] = event.target.value;
 
     this.setState({
@@ -79,18 +89,17 @@ class Main extends React.Component {
     const notes = [...this.state.notes];
     const index = notes.findIndex(note => note.active === true);
 
-    if(index >= 0) 
-      return notes[index];
+    if (index >= 0) return notes[index];
     else
       return {
         key: 0,
         body: "",
         name: "",
         active: true,
-        hover: false,
-      }
+        hover: false
+      };
   }
-  
+
   render() {
     return (
       <div className="Main" style={style}>
@@ -101,7 +110,11 @@ class Main extends React.Component {
           onMouseLeave={key => this.handleMouseLeave(key)}
           notes={this.state.notes}
         />
-        <NoteForm name={this.findActiveNote().name} body={this.findActiveNote().body} updateState={this.updateForm.bind(this)}/>
+        <NoteForm
+          name={this.findActiveNote().name}
+          body={this.findActiveNote().body}
+          updateState={this.updateForm.bind(this)}
+        />
       </div>
     );
   }

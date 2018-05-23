@@ -1,35 +1,31 @@
 import React from "react";
 
-class NoteForm extends React.Component {
-
-  render() {
-    return (
-      <div className="NoteForm" style={styles.NoteForm}>
-        <div className="form-actions" style={styles.formActions}>
-          <button type="button" style={styles.button}>
-            <i className="fa fa-trash-o" style={styles.i} />
-          </button>
-        </div>
-        <form style={styles.form} onChange={(event) => this.props.updateState(event)}>
-          <p>
-            <input
-              type="text"
-              name="name"
-              placeholder="Title your note"
-              value={this.props.name}
-              style={styles.input}
-            />
-          </p>
-          <textarea
-            name="body"
-            style={styles.textarea}
-            value={this.props.body}
-          />
-        </form>
+const NoteForm = props => {
+  return (
+    <div className="NoteForm" style={styles.NoteForm}>
+      <div className="form-actions" style={styles.formActions}>
+        <button type="button" style={styles.button}>
+          <i className="fa fa-trash-o" style={styles.i} />
+        </button>
       </div>
-    );
-  }
-}
+      <form
+        style={styles.form}
+        onChange={event => props.updateState(event)}
+      >
+        <p>
+          <input
+            type="text"
+            name="name"
+            placeholder="Title your note"
+            value={props.name}
+            style={styles.input}
+          />
+        </p>
+        <textarea name="body" style={styles.textarea} value={props.body} />
+      </form>
+    </div>
+  );
+};
 
 const styles = {
   NoteForm: {

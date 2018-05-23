@@ -6,25 +6,30 @@ import quill from "./quill.svg";
 import newIcon from "./new.png";
 import newHover from "./new-hover.png";
 
-const Sidebar = ({makeNewNote })=> {
+const Sidebar = ({ makeNewNote }) => {
   return (
     <div className={css(styles.sidebar)}>
       <div className={css(styles.logo)}>
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <a onClick={makeNewNote}>
-        <img
-          src={newHover}
-          alt="New note"
-          className={css(styles.aImage)}
-        />
+      <a
+        href="notes"
+        onClick={event => {
+          event.preventDefault();
+          makeNewNote();
+        }}
+      >
+        <img src={newHover} alt="New note" className={css(styles.aImage)} />
         <img src={newIcon} alt="New note" className={css(styles.aImage)} />
       </a>
 
       <div className={css(styles.SignOut)}>
         <button className={css(styles.button, styles.SignOutButton)}>
-          <i className={`fas fa-sign-out-alt ${css(styles.i)}`} title="Sign out" />
+          <i
+            className={`fas fa-sign-out-alt ${css(styles.i)}`}
+            title="Sign out"
+          />
         </button>
       </div>
     </div>

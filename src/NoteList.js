@@ -2,34 +2,26 @@ import React from "react";
 
 import NoteListElement from "./NoteListElement";
 
-class NoteList extends React.Component {
-  renderList() {
-    return this.props.notes.map((note, index) => {
-      return (
-        <NoteListElement
-          hover={note.hover}
-          name={note.name}
-          body={note.body}
-          key={note.key}
-          onClick={() => this.props.onClick(note.key)}
-          onMouseEnter={() => this.props.onMouseEnter(note.key)}
-          onMouseLeave={() => this.props.onMouseLeave(note.key)}
-        />
-      );
-    });
-  }
-
-  render() {
-    return (
-      <div className="NoteList" style={styles.NoteList}>
-        <h3 style={styles.h3}>Notes</h3>
-        <ul id="notes" style={styles.notes}>
-          {this.renderList()}
-        </ul>
-      </div>
-    );
-  }
-}
+const NoteList = props => {
+  return (
+    <div className="NoteList" style={styles.NoteList}>
+      <h3 style={styles.h3}>Notes</h3>
+      <ul id="notes" style={styles.notes}>
+        {this.props.notes.map(note => (
+          <NoteListElement
+            hover={note.hover}
+            name={note.name}
+            body={note.body}
+            key={note.key}
+            onClick={() => this.props.onClick(note.key)}
+            onMouseEnter={() => this.props.onMouseEnter(note.key)}
+            onMouseLeave={() => this.props.onMouseLeave(note.key)}
+          />
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 const styles = {
   NoteList: {

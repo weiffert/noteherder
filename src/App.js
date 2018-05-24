@@ -7,7 +7,7 @@ import SignIn from "./SignIn";
 
 class App extends Component {
   state = {
-    uid: null
+    user: null
   };
 
   componentWillMount() {
@@ -31,12 +31,12 @@ class App extends Component {
   };
 
   signedIn = () => {
-    return this.state.uid;
+    return this.state.user;
   };
 
   signOut = () => {
     window.localStorage.setItem('login', "");
-    this.setState({ uid: null });
+    this.setState({ user : null });
     auth.signOut();
   };
 
@@ -44,7 +44,7 @@ class App extends Component {
     return (
       <div className="App">
         {this.signedIn() ? (
-          <Main signOut={this.signOut} user={this.state.uid} />
+          <Main signOut={this.signOut} user={this.state.user} />
         ) : (
           <SignIn handleAuth={this.handleAuth} />
         )}

@@ -1,7 +1,7 @@
 .SignIn {
   display: flex;
   flex-direction: column;
-  background: url("./splash.jpg");
+  background-image: url("https://picsum.photos/1500/1000?image=885&blur=50");
   background-color: rgba(0,0,0,0.3);
   background-size: cover;
   height: 100vh;
@@ -58,4 +58,25 @@
 .SignIn button.google {
   background-color: white;
   color: #666;
+}
+
+.SignIn header {
+  background-color: #fff;
+  height: 80px;
+  padding: 0 2rem;
+  margin: 0;
+}
+.SignIn header img {
+  width: 30px;
+  height: 30px;
+  padding-bottom: 4px;
+  margin-right: 4px;
+}
+.SignIn header .title {
+  color: #008BF8;
+  font-weight: 400;
+  text-transform: uppercase;
+  line-height: 80px;
+  font-family: "Fauna One";
+  font-size: 2.2rem;
 }

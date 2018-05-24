@@ -15,7 +15,7 @@ const SignIn = ({ handleAuth }) => {
   return (
     <div className="SignIn">
       <header className="Header">
-        <img src="" alt="" />
+        <img src={quill} alt="" />
         <span className="title">Noteherder</span>
       </header>
       <main>

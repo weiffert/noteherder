@@ -1,5 +1,6 @@
 import React from "react";
 
+import base from "./base";
 import Sidebar from "./Sidebar";
 import NoteList from "./NoteList";
 import NoteForm from "./NoteForm";
@@ -14,24 +15,27 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    this.loadFromLocalStorage();
+    base.syncState("notes", {
+      context: this,
+      state: 'notes',
+      asArray: true,
+    });
   }
 
   loadFromLocalStorage = () => {
     const data = window.localStorage.getItem("notes");
     try {
-      this.setState({notes: JSON.parse(data)});
+      this.setState({ notes: JSON.parse(data) });
     } catch (error) {
       this.setState({
         notes: []
       });
     }
   };
-  
+
   saveToLocalStorage = () => {
     window.localStorage.setItem("notes", JSON.stringify(this.state.notes));
   };
-
 
   handleMouseEnter = note => {
     const notes = [...this.state.notes];
@@ -77,8 +81,6 @@ class Main extends React.Component {
       notes,
       activeNote: note
     });
-
-    this.saveToLocalStorage();
   };
 
   deleteNote = (note, event) => {
@@ -91,11 +93,10 @@ class Main extends React.Component {
         notes
       });
     }
+
     this.setState({
       activeNote: this.blankNote()
     });
-
-    this.saveToLocalStorage();
   };
 
   blankNote = () => {

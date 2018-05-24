@@ -39,7 +39,7 @@ class Main extends React.Component {
 
   handleMouseEnter = note => {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(n => n.key === note.key);
+    const index = notes.findIndex(n => n.id === note.id);
     notes[index].hover = true;
     this.setState({
       notes
@@ -48,7 +48,7 @@ class Main extends React.Component {
 
   handleMouseLeave = note => {
     const notes = [...this.state.notes];
-    const index = notes.findIndex(n => n.key === note.key);
+    const index = notes.findIndex(n => n.id === note.id);
     notes[index].hover = false;
     this.setState({
       notes
@@ -69,9 +69,9 @@ class Main extends React.Component {
 
   updateForm = (note, event) => {
     const notes = [...this.state.notes];
-    let index = notes.findIndex(n => n.key === note.key);
+    let index = notes.findIndex(n => n.id === note.id);
     if (index < 0) {
-      note.key = Date.now();
+      note.id = Date.now();
       notes.push(note);
     } else {
       notes[index] = note;
@@ -85,7 +85,7 @@ class Main extends React.Component {
 
   deleteNote = (note, event) => {
     const notes = [...this.state.notes];
-    let index = notes.findIndex(n => n.key === note.key);
+    let index = notes.findIndex(n => n.id === note.id);
     if (index >= 0) {
       notes.splice(index, 1);
 
@@ -101,7 +101,7 @@ class Main extends React.Component {
 
   blankNote = () => {
     return {
-      key: 0,
+      id: 0,
       body: "",
       name: "",
       active: false,

@@ -7,11 +7,11 @@ const NoteList = ({ notes, onClick, onMouseEnter, onMouseLeave }) => {
     <div className="NoteList" style={styles.NoteList}>
       <h3 style={styles.h3}>Notes</h3>
       <ul id="notes" style={styles.notes}>
-        {notes.map(note => (
+        {notes.map((note, index) => (
           <NoteListElement
             hover={note.hover}
-            key={note.key}
             note={note}
+            key={index}
             onClick={onClick}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}

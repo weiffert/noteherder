@@ -1,3 +1,5 @@
+// Copy this file into `base.js` and add your app details.
+
 import firebase from 'firebase/app';
 import database from 'firebase/database';
 import Rebase from 're-base';

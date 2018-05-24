@@ -11,35 +11,27 @@ class Main extends React.Component {
       activeNote: this.blankNote(),
       notes: []
     };
-
-    window.addEventListener("beforeunload", this.saveToLocalStorage);
   }
 
-  saveToLocalStorage = () => {
-    window.localStorage.setItem("state", JSON.stringify(this.state));
-  };
+  componentWillMount() {
+    this.loadFromLocalStorage();
+  }
 
   loadFromLocalStorage = () => {
-    const data = window.localStorage.getItem("state");
-    console.log(data);
+    const data = window.localStorage.getItem("notes");
     try {
-      this.setState(JSON.parse(data));
+      this.setState({notes: JSON.parse(data)});
     } catch (error) {
       this.setState({
-        activeNote: this.blankNote(),
         notes: []
       });
     }
   };
+  
+  saveToLocalStorage = () => {
+    window.localStorage.setItem("notes", JSON.stringify(this.state.notes));
+  };
 
-  componentDidMount() {
-    this.loadFromLocalStorage();
-  }
-
-  componentWillUnmount() {
-    this.saveToLocalStorage();
-    debugger;
-  }
 
   handleMouseEnter = note => {
     const notes = [...this.state.notes];
@@ -85,6 +77,8 @@ class Main extends React.Component {
       notes,
       activeNote: note
     });
+
+    this.saveToLocalStorage();
   };
 
   deleteNote = (note, event) => {
@@ -100,6 +94,8 @@ class Main extends React.Component {
     this.setState({
       activeNote: this.blankNote()
     });
+
+    this.saveToLocalStorage();
   };
 
   blankNote = () => {

@@ -35,7 +35,7 @@ class App extends Component {
   };
 
   signOut = () => {
-    window.localStorage.setItem('login', "");
+    window.localStorage.removeItem('login');
     this.setState({ user : null });
     auth.signOut();
   };

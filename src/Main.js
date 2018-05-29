@@ -15,7 +15,7 @@ class Main extends React.Component {
   }
 
   componentWillMount() {
-    base.syncState(`${this.props.user}-notes`, {
+    base.syncState(`notes/${this.props.user}`, {
       context: this,
       state: "notes",
       asArray: true

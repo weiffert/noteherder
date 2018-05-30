@@ -56,12 +56,6 @@ class Main extends React.Component {
     });
   };
 
-  handleClick = note => {
-    this.setState({
-      activeNote: note,
-    });
-  };
-
   clearNoteForm = () => {
     this.setState({
       activeNote: this.blankNote(),
@@ -112,6 +106,7 @@ class Main extends React.Component {
 
   render() {
     const formProps = {
+      notes: this.state.notes,
       note: this.state.activeNote,
       onChange: this.updateForm,
       onClick: this.deleteNote,
@@ -124,7 +119,6 @@ class Main extends React.Component {
           signOut={this.props.signOut}
         />
         <NoteList
-          onClick={this.handleClick}
           onMouseEnter={this.handleMouseEnter}
           onMouseLeave={this.handleMouseLeave}
           notes={this.state.notes}

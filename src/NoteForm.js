@@ -10,18 +10,19 @@ class NoteForm extends React.Component {
 
   componentWillReceiveProps = newProps => {
     const newId = newProps.match.params.id;
-    const index = newProps.notes.findIndex(note => note.id.toString() === newId);
-    const note = newProps.notes[index];
+    const index = newProps.notes.findIndex(
+      note => note.id.toString() === newId
+    );
+    const note = newProps.notes[index] || this.blankNote();
 
-    if (note)
-      this.setState({
-        note: newProps.notes[index],
-      });
+    this.setState({
+      note
+    });
   };
 
   blankNote = () => {
     return {
-      id: 0,
+      id: Date.now(),
       body: "",
       name: "",
       active: false,

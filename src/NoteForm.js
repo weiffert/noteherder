@@ -22,7 +22,7 @@ class NoteForm extends React.Component {
 
   blankNote = () => {
     return {
-      id: Date.now(),
+      id: 0,
       body: "",
       name: "",
       active: false,

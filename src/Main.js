@@ -62,19 +62,22 @@ class Main extends React.Component {
   };
 
   updateForm = (note, event) => {
+    let shouldRedirect = false;
     const notes = [...this.state.notes];
     let index = notes.findIndex(n => n.id === note.id);
     if (index < 0) {
       note.id = Date.now();
       notes.push(note);
+      shouldRedirect = true;
     } else {
       notes[index] = note;
     }
 
     this.setState({
       notes,
-      activeNote: note,
     });
+
+    if (shouldRedirect) this.props.history.push(`/notes/${note.id}`);
   };
 
   deleteNote = (note, event) => {

@@ -47,15 +47,23 @@ class App extends Component {
         <Switch>
           <Route
             path="/sign-in"
-            render={() =>
-              this.signedIn() ? <Redirect to="/notes" /> : <SignIn />
+            render={navProps =>
+              this.signedIn() ? (
+                <Redirect to="/notes" />
+              ) : (
+                <SignIn {...navProps} />
+              )
             }
           />
           <Route
             path="/notes"
-            render={() =>
+            render={navProps =>
               this.signedIn() ? (
-                <Main signOut={this.signOut} user={this.state.user} />
+                <Main
+                  signOut={this.signOut}
+                  user={this.state.user}
+                  {...navProps}
+                />
               ) : (
                 <Redirect to="/sign-in" />
               )

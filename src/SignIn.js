@@ -7,7 +7,7 @@ import {auth, githubProvider, googleProvider } from './base';
 import googleLogo from './google.svg';
 import quill from './quill.svg';
 
-const SignIn = ({ handleAuth }) => {
+const SignIn = () => {
   const authenticate = (provider) => {
     auth.signInWithPopup(provider);
   };

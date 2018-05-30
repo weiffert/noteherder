@@ -8,6 +8,17 @@ class NoteForm extends React.Component {
     };
   }
 
+  componentWillReceiveProps = newProps => {
+    const newId = newProps.match.params.id;
+    const index = newProps.notes.findIndex(note => note.id.toString() === newId);
+    const note = newProps.notes[index];
+
+    if (note)
+      this.setState({
+        note: newProps.notes[index],
+      });
+  };
+
   blankNote = () => {
     return {
       id: 0,
@@ -23,6 +34,7 @@ class NoteForm extends React.Component {
     note[event.target.name] = event.target.value;
     this.setState({ note }, () => this.props.onChange(this.state.note, event));
   };
+
   render = () => {
     return (
       <div className="NoteForm" style={styles.NoteForm}>

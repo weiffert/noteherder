@@ -8,7 +8,7 @@ import SignIn from "./SignIn";
 
 class App extends Component {
   state = {
-    user: null
+    user: null,
   };
 
   componentWillMount() {
@@ -56,6 +56,15 @@ class App extends Component {
             render={() =>
               this.signedIn() ? (
                 <Main signOut={this.signOut} user={this.state.user} />
+              ) : (
+                <Redirect to="/sign-in" />
+              )
+            }
+          />
+          <Route
+            render={() =>
+              this.signedIn() ? (
+                <Redirect to="/notes" />
               ) : (
                 <Redirect to="/sign-in" />
               )

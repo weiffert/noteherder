@@ -14,13 +14,7 @@ const Sidebar = ({ makeNewNote, signOut }) => {
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <Link
-        to="/notes"
-        // onClick={event => {
-        //   event.preventDefault();
-        //   makeNewNote();
-        // }}
-      >
+      <Link to="/notes">
         <img src={newHover} alt="New note" className={css(styles.aImage)} />
         <img src={newIcon} alt="New note" className={css(styles.aImage)} />
       </Link>
@@ -46,27 +40,27 @@ const styles = StyleSheet.create({
     padding: "0.5rem 0",
     display: "flex",
     flexDirection: "column",
-    alignItems: "center"
+    alignItems: "center",
   },
   logo: {
     fontFamily: "Fauna One",
     color: "#666",
-    fontSize: "3rem"
+    fontSize: "3rem",
   },
   logoImg: {
     width: "3rem",
-    paddingLeft: "0.5rem"
+    paddingLeft: "0.5rem",
   },
   newNote: {
     marginTop: "2rem",
     position: "relative",
-    width: "4rem"
+    width: "4rem",
   },
   button: {
     backgroundColor: "transparent",
     border: "0",
     color: "#008bf8",
-    cursor: "pointer"
+    cursor: "pointer",
   },
   aImage: {
     position: "absolute",
@@ -74,19 +68,19 @@ const styles = StyleSheet.create({
     width: "4rem",
     transition: "opacity 0.25s ease-in-out",
     ":hover": {
-      opacity: 0
-    }
+      opacity: 0,
+    },
   },
   SignOut: {
     position: "absolute",
-    bottom: "1rem"
+    bottom: "1rem",
   },
   SignOutButton: {
-    outline: "none"
+    outline: "none",
   },
   i: {
-    fontSize: "2rem"
-  }
+    fontSize: "2rem",
+  },
 });
 
 export default Sidebar;

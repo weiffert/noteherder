@@ -1,4 +1,5 @@
 import React from "react";
+import { Route, Switch } from "react-router-dom";
 
 import base from "./base";
 import Sidebar from "./Sidebar";
@@ -10,7 +11,7 @@ class Main extends React.Component {
     super(props);
     this.state = {
       activeNote: this.blankNote(),
-      notes: []
+      notes: [],
     };
   }
 
@@ -18,7 +19,7 @@ class Main extends React.Component {
     base.syncState(`notes/${this.props.user}`, {
       context: this,
       state: "notes",
-      asArray: true
+      asArray: true,
     });
   }
 
@@ -28,7 +29,7 @@ class Main extends React.Component {
       this.setState({ notes: JSON.parse(data) });
     } catch (error) {
       this.setState({
-        notes: []
+        notes: [],
       });
     }
   };
@@ -42,7 +43,7 @@ class Main extends React.Component {
     const index = notes.findIndex(n => n.id === note.id);
     notes[index].hover = true;
     this.setState({
-      notes
+      notes,
     });
   };
 
@@ -51,19 +52,19 @@ class Main extends React.Component {
     const index = notes.findIndex(n => n.id === note.id);
     notes[index].hover = false;
     this.setState({
-      notes
+      notes,
     });
   };
 
   handleClick = note => {
     this.setState({
-      activeNote: note
+      activeNote: note,
     });
   };
 
   clearNoteForm = () => {
     this.setState({
-      activeNote: this.blankNote()
+      activeNote: this.blankNote(),
     });
   };
 
@@ -79,7 +80,7 @@ class Main extends React.Component {
 
     this.setState({
       notes,
-      activeNote: note
+      activeNote: note,
     });
   };
 
@@ -90,12 +91,12 @@ class Main extends React.Component {
       notes.splice(index, 1);
 
       this.setState({
-        notes
+        notes,
       });
     }
 
     this.setState({
-      activeNote: this.blankNote()
+      activeNote: this.blankNote(),
     });
   };
 
@@ -105,11 +106,17 @@ class Main extends React.Component {
       body: "",
       name: "",
       active: false,
-      hover: false
+      hover: false,
     };
   };
 
   render() {
+    const formProps = {
+      note: this.state.activeNote,
+      onChange: this.updateForm,
+      onClick: this.deleteNote,
+    };
+
     return (
       <div className="Main" style={style}>
         <Sidebar
@@ -122,11 +129,16 @@ class Main extends React.Component {
           onMouseLeave={this.handleMouseLeave}
           notes={this.state.notes}
         />
-        <NoteForm
-          note={this.state.activeNote}
-          onChange={this.updateForm}
-          onClick={this.deleteNote}
+        <Switch> 
+        <Route
+          path="/notes/:id"
+          render={navProps => <NoteForm {...formProps} {...navProps} />}
         />
+        <Route
+          path="/notes"
+          render={navProps => <NoteForm {...formProps} {...navProps} />}
+        />
+        </Switch>
       </div>
     );
   }
@@ -135,7 +147,7 @@ class Main extends React.Component {
 const style = {
   display: "flex",
   height: "100vh",
-  alignItems: "stretch"
+  alignItems: "stretch",
 };
 
 export default Main;

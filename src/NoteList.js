@@ -25,7 +25,7 @@ const styles = {
   NoteList: {
     borderLeft: "1px solid #eee",
     borderRight: "1px solid #eee",
-    width: "30rem"
+    width: "30rem",
   },
   // @media (max-width: 800px) {
   //   .NoteList {
@@ -39,7 +39,7 @@ const styles = {
     fontFamily: "Oxygen",
     fontWeight: "300",
     letterSpacing: "3px",
-    margin: "20px 2rem"
+    margin: "20px 2rem",
   },
   notes: {
     borderTop: "1px solid #eee",
@@ -49,8 +49,8 @@ const styles = {
     marginTop: "1em",
     padding: "0",
     width: "100%",
-    color: "#999"
-  }
+    color: "#999",
+  },
 };
 
 export default NoteList;

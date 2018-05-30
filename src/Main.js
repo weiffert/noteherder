@@ -55,9 +55,18 @@ class Main extends React.Component {
     });
   };
 
+  sortByDate = (notes) => {
+    return notes.sort((a, b) => {
+      if(a.lastEdited > b.lastEdited)
+        return -1;
+      else 
+        return 1;
+    });
+  }
+
   updateForm = (note, event) => {
     let shouldRedirect = false;
-    const notes = [...this.state.notes];
+    let notes = [...this.state.notes];
     let index = notes.findIndex(n => n.id === note.id);
     if (index < 0) {
       note.id = Date.now();
@@ -66,6 +75,8 @@ class Main extends React.Component {
     } else {
       notes[index] = note;
     }
+
+    notes = this.sortByDate(notes);
 
     this.setState({
       notes,

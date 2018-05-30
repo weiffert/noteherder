@@ -25,7 +25,8 @@ class NoteForm extends React.Component {
       id: 0,
       body: "",
       name: "",
-      lastEdited: "",
+      lastEditedString: "",
+      lastEdited: 0,
       active: false,
       hover: false,
     };
@@ -37,9 +38,11 @@ class NoteForm extends React.Component {
 
     let date = new Date();
 
-    note.lastEdited = `${date.getHours()}:${
+    note.lastEditedString = `${date.getHours()}:${
       date.getMinutes() < 10 ? `0` : ""
     }${date.getMinutes()} on ${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
+    note.lastEdited = Date.now();
+    
     this.setState({ note }, () => this.props.onChange(this.state.note, event));
   };
 
@@ -70,7 +73,7 @@ class NoteForm extends React.Component {
             />
           </p>
           {this.state.note.lastEdited ? (
-            <p>Updated on {this.state.note.lastEdited}</p>
+            <p>Updated on {this.state.note.lastEditedString}</p>
           ) : (
             ""
           )}

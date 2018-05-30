@@ -55,12 +55,6 @@ class Main extends React.Component {
     });
   };
 
-  clearNoteForm = () => {
-    this.setState({
-      activeNote: this.blankNote(),
-    });
-  };
-
   updateForm = (note, event) => {
     let shouldRedirect = false;
     const notes = [...this.state.notes];

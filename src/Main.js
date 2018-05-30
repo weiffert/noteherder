@@ -10,7 +10,6 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeNote: this.blankNote(),
       notes: [],
     };
   }
@@ -107,7 +106,6 @@ class Main extends React.Component {
   render() {
     const formProps = {
       notes: this.state.notes,
-      note: this.state.activeNote,
       onChange: this.updateForm,
       onClick: this.deleteNote,
     };
@@ -123,15 +121,15 @@ class Main extends React.Component {
           onMouseLeave={this.handleMouseLeave}
           notes={this.state.notes}
         />
-        <Switch> 
-        <Route
-          path="/notes/:id"
-          render={navProps => <NoteForm {...formProps} {...navProps} />}
-        />
-        <Route
-          path="/notes"
-          render={navProps => <NoteForm {...formProps} {...navProps} />}
-        />
+        <Switch>
+          <Route
+            path="/notes/:id"
+            render={navProps => <NoteForm {...formProps} {...navProps} />}
+          />
+          <Route
+            path="/notes"
+            render={navProps => <NoteForm {...formProps} {...navProps} />}
+          />
         </Switch>
       </div>
     );

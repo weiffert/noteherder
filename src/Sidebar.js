@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { StyleSheet, css } from "aphrodite";
 
@@ -13,16 +14,16 @@ const Sidebar = ({ makeNewNote, signOut }) => {
         <img src={quill} alt="Noteherder" className={css(styles.logoImg)} />
       </div>
 
-      <a
-        href="notes"
-        onClick={event => {
-          event.preventDefault();
-          makeNewNote();
-        }}
+      <Link
+        to="/notes"
+        // onClick={event => {
+        //   event.preventDefault();
+        //   makeNewNote();
+        // }}
       >
         <img src={newHover} alt="New note" className={css(styles.aImage)} />
         <img src={newIcon} alt="New note" className={css(styles.aImage)} />
-      </a>
+      </Link>
 
       <div className={css(styles.SignOut)}>
         <button

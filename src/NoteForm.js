@@ -16,7 +16,7 @@ class NoteForm extends React.Component {
     const note = newProps.notes[index] || this.blankNote();
 
     this.setState({
-      note
+      note,
     });
   };
 
@@ -25,6 +25,7 @@ class NoteForm extends React.Component {
       id: 0,
       body: "",
       name: "",
+      lastEdited: "",
       active: false,
       hover: false,
     };
@@ -33,6 +34,12 @@ class NoteForm extends React.Component {
   updateNote = event => {
     const note = { ...this.state.note };
     note[event.target.name] = event.target.value;
+
+    let date = new Date();
+
+    note.lastEdited = `${date.getHours()}:${
+      date.getMinutes() < 10 ? `0` : ""
+    }${date.getMinutes()} on ${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
     this.setState({ note }, () => this.props.onChange(this.state.note, event));
   };
 
@@ -62,6 +69,11 @@ class NoteForm extends React.Component {
               style={styles.input}
             />
           </p>
+          {this.state.note.lastEdited ? (
+            <p>Updated on {this.state.note.lastEdited}</p>
+          ) : (
+            ""
+          )}
           <textarea
             name="body"
             style={styles.textarea}

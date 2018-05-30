@@ -89,11 +89,10 @@ class Main extends React.Component {
       this.setState({
         notes,
       });
+      
+      this.props.history.push("/notes");
     }
 
-    this.setState({
-      activeNote: this.blankNote(),
-    });
   };
 
   blankNote = () => {

@@ -1,16 +1,16 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const NoteListElement = ({
   note,
   hover,
-  onClick,
   onMouseEnter,
-  onMouseLeave
+  onMouseLeave,
 }) => {
   return (
-    <a
+    <NavLink
+      to={`/notes/${note.id}`}
       style={styles.a}
-      onClick={() => onClick(note)}
       onMouseEnter={() => onMouseEnter(note)}
       onMouseLeave={() => onMouseLeave(note)}
     >
@@ -43,7 +43,7 @@ const NoteListElement = ({
           </div>
         </div>
       </li>
-    </a>
+    </NavLink>
   );
 };
 
@@ -52,12 +52,12 @@ const styles = {
     height: "100px",
     fontSize: "90%",
     cursor: "pointer",
-    overflow: "hidden"
+    overflow: "hidden",
   },
   a: {
     transition: "background-color .1s ease-in-out, color .1s ease-in-out",
     color: "inherit",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   note: {
     borderTop: "1px solid #eee",
@@ -65,20 +65,20 @@ const styles = {
     padding: "1rem 4px",
     display: "block",
     height: "100px",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   firstNote: {
-    borderTop: "none"
+    borderTop: "none",
   },
   liHover: {
-    backgroundColor: "#008bf8"
+    backgroundColor: "#008bf8",
   },
   liHoverText: {
     color: "#fff",
-    textDecoration: "none"
+    textDecoration: "none",
   },
   liHoverNote: {
-    borderColor: "transparent"
+    borderColor: "transparent",
   },
   noteTitle: {
     color: "#4a4a4a",
@@ -87,12 +87,12 @@ const styles = {
     fontWeight: "400",
     whiteSpace: "nowrap",
     overflowX: "hidden",
-    textOverflow: "ellipsis"
+    textOverflow: "ellipsis",
   },
   noteBody: {
     height: "54px",
     overflow: "hidden",
-    marginTop: ".5rem"
+    marginTop: ".5rem",
   },
   noteBodyChildren: {
     fontSize: "1em",
@@ -100,8 +100,8 @@ const styles = {
     padding: "0",
     color: "#999",
     background: "none",
-    border: "none"
-  }
+    border: "none",
+  },
 };
 
 export default NoteListElement;

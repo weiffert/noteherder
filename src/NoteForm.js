@@ -8,16 +8,21 @@ class NoteForm extends React.Component {
     };
   }
 
-  componentWillReceiveProps = newProps => {
-    const newId = newProps.match.params.id;
-    const index = newProps.notes.findIndex(
-      note => note.id.toString() === newId
-    );
-    const note = newProps.notes[index] || this.blankNote();
+  componentDidUpdate = () => {
+    const newId = this.props.match.params.id || "";
+    const oldId = this.state.note.id || "";
 
-    this.setState({
-      note,
-    });
+    if (newId !== oldId) {
+      const index = this.props.notes.findIndex(
+        note => note.id.toString() === newId
+      );
+      const note = this.props.notes[index] || this.blankNote();
+
+      if (note.id !== this.state.note.id)
+        this.setState({
+          note,
+        });
+    }
   };
 
   blankNote = () => {
@@ -42,7 +47,7 @@ class NoteForm extends React.Component {
       date.getMinutes() < 10 ? `0` : ""
     }${date.getMinutes()} on ${date.getMonth()}/${date.getDay()}/${date.getFullYear()}`;
     note.lastEdited = Date.now();
-    
+
     this.setState({ note }, () => this.props.onChange(this.state.note, event));
   };
 

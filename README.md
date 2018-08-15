@@ -5,7 +5,7 @@ Xtern Bootcamp Project 3
 
 My first foray into react projects, databasing, hosting, and authentication. Noteherder keeps track of user's notes. There is live updating, note creation, and note deletion. Users can log in using Google or Github and log out.
 
-Libraries: React, React-Router, Aphrodite
+Libraries: React, React-Router, Aphrodite, re-base, gh-pages
 
 Hosting: Firebase
 
